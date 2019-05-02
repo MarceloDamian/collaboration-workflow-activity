@@ -81,5 +81,5 @@ for i in `seq 1 ${master_branch_length}` ; do
 done
 
 
-# Navigate out to the working directory
-cd ..
+# Navigate back to the previous directory
+cd $OLDPWD

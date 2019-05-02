@@ -1,15 +1,21 @@
 #!/bin/bash
-# make_repo_with_conflict.sh  -- 
-# 
-# Usage           : make_repo_with_conflict.sh  
-# Written by      : Stewart Weiss 
+# make_repo_with_conflict.sh  --
+#
+# Usage           : make_repo_with_conflict.sh
+# Written by      : Stewart Weiss
 # Created on      : April 29, 2019
-              
-# Description     :    
+#
+# Modified        : May 2, 2019 by SNW
+#                   Changed the usage so that it expects a directory name
+#                   argument and creates the repo in that directory.
+#                   If the directory exists it will  create it in that
+#                   directory.
+
+# Description     :
 # A tiny script that creates a git repository with a merge conflict
 # that must be resolved manually. When it is run, it creates a git
 # repository in the current working directory, with a few small files in it.
-# 
+#
 # After running the script, you can either try a merge or a rebase.
 # If a rebase, do the following:
 #    git checkout branch1
@@ -42,10 +48,25 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-#*******************************************************************************             
+#*******************************************************************************
 
 
-git init
+# Check usage
+if [ $# -lt 1 ] ; then
+    echo "usage: `basename $0` repository_name "
+    exit
+fi
+
+# Initialize an empty repository in the given directory
+git init $1
+if [ $? -ne 0 ] ; then
+    echo "Error trying to create repository named $1"
+    exit
+fi
+
+# Navigate into the repository
+cd $1
+
 echo "My first file" > file1 ; git add file1
 git commit . -m "Added file1 to empty repository"
 echo "My second file" > file2 ; git add file2
@@ -61,4 +82,7 @@ git commit . -m "Added file5 to master"
 echo "My latest third file" >|  file3 ; git add file3
 git commit . -m "Updated file3"
 
+
+# Navigate out to the working directory
+cd $OLDPWD
 

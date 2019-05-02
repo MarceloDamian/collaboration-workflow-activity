@@ -20,7 +20,8 @@ synchronizing repositories. A second set of slides  specifically covers
 merging and rebasing and is also published on the website. They are not complete
 yet, but contain sufficient material:
 [Tutorial on Merging and Rebasing](http://www.compsci.hunter.cuny.edu/~sweiss/course_materials/csci395.86/slides/git_merge_rebase.html).
-
+They also assume that you are familiar with how to clone and fork repositories on
+GitHub.
 
 
 2. Although any Git server could be used for this activity, the instructions
@@ -63,14 +64,21 @@ window, navigate to the repository directory, and use
 
 ### Setup
 
-1. Download the script located in this repository named `create_demo_repo.sh`.
-Copy it into a directory that is listed in your shell's `PATH` variable, such
-as `~/bin`, as it will be useful to have for future use. Make sure it is
-executable:
+1. Clone this repository onto your local machine.
+
+2. Make the two scripts in this repository, `create_demo_repo.sh` and
+`make_repo_with_conflict.sh` executable:
 
     ```bash
-      $ chmod +x ~/bin/create_demo_repo.sh
+      $ chmod +x ~/bin/create_demo_repo.sh make_repo_with_conflict.sh
     ```
+    __[Optional Step]__ If you want to be able to run them without having to
+from any directory, just by typing their names, then copy them into a
+directory that is listed in your shell's `PATH` variable, such
+as `~/bin`, as they might be useful to have for future use. The script
+`make_repo_with_conflict.sh` creates a repository with a merge conflict so that
+you can practice resolving it. If you mess it up, you can just delete it and
+run the script again.
 
 2. Follow the instructions in the file `Instructions.md` in this repository.
 
