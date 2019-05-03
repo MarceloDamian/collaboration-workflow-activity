@@ -9,7 +9,7 @@ directly on GitHub.
 
 # Assuming your practice repository is named mydemo (replace it with real name)
 # and is in the class organization, and that your current working directory
-$ is mydemo,
+# is mydemo,
 
 if [ $# -lt 2 ] ; then
     echo "usage: make_simulating_team_repo local_name github_repo_url"
