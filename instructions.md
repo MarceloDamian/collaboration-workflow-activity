@@ -53,6 +53,16 @@ prompted to authenticate by whatever method you set up with `GitHub`, and then
 your repository will be populated on GitHub with the history and files
 of your `master` branch.
 
+5. __[ALTERNATIVE INSTRUCTION]__ Instead of doing steps 6 through 14 below, you can
+run the script in this repository named `make_simulating_team_repo.sh`, which
+will create all new files created and committed in those instructions and then push
+the new work to the GitHub repository, so that you can continue from step 15.
+
+   If you choose to do this, you must make this script executable, and make sure
+that you switched back to the `demo` directory before you run it.
+
+    Currently the lines that push the work up are commented out; uncomment them
+before running the script.
 
 5. Return to the repository on GitHub and refresh the page if you do not see the
 repository files automatically.
