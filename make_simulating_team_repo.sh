@@ -55,4 +55,4 @@ git checkout master
 
 #git push -u origin master
 #git push -u origin feature2
-#git push -u exploratory
+#git push -u origin exploratory
