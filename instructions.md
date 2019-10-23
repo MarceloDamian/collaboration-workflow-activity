@@ -1,18 +1,21 @@
 ## Instructions for This Exercise
 
+__Note__: Prior to starting, you should have installed a visual Git application on
+your machine so that you can see a visual graph of the commits in the repository
+as you work. The README in this repository explains how to do this.
 
 1. Create a repository on the local machine using the `create_demo_repo.sh`
-script:
+script. On the command line, enter:
 
     ```bash
       create_demo_repo.sh  <repo_name>
     ```
 
     This creates a repository in the current working directory with whatever name
-you choose as its only argument,  with a forked history and two branches,
+you choose as its only argument,  with a branched history containing two branches,
 one named `master` and one named  `feature1`.
-For the rest of these instructions, we will assume that the name
-of the repository that you created is `demo`.
+__For the rest of these instructions, we will assume that the name
+of the repository that you created is `demo`__.
 
 2. If it is not open, start up your browser,
 open GitHub, navigate to the class organization, and create an empty repository
@@ -31,9 +34,16 @@ make your working directory  the `demo` directory that you just created:
     ```bash
      cd demo
     ```
-3. It is time to start up the Git visualization
-tool that you installed on your machine. I will assume here that it is `gitg`,
-the `Gnome` GUI client. In the command-line, type
+4. Paste the commands from the clipboard into the terminal window. In most
+terminal emulators, Control-Shift-V does this. If this works, you will be
+prompted to authenticate by whatever method you set up with `GitHub`, and then
+your repository will be populated on GitHub with the history and files
+of your `master` branch.
+
+5. It is time to start up the Git visualization tool that you installed
+on your machine. I will assume here that it is `gitg`,
+the `Gnome` GUI client. Return to the command line on the local machine and
+in the command-line, type
 
     ```bash
      $ gitg &
@@ -47,13 +57,9 @@ As you work, take a look at how the repository's history
 changes. Before you go further, take a look at what it looks like and remember
 it.
 
-4. Paste the commands from the clipboard into the terminal window. In most
-terminal emulators, Control-Shift-V does this. If this works, you will be
-prompted to authenticate by whatever method you set up with `GitHub`, and then
-your repository will be populated on GitHub with the history and files
-of your `master` branch.
 
-5. __[ALTERNATIVE INSTRUCTION]__ Instead of doing steps 6 through 14 below, you can
+
+5. __[ALTERNATIVE INSTRUCTION]__ Instead of doing steps 7 through 14 below, you can
 run the script in this repository named `make_simulating_team_repo.sh`, which
 will create all new files created and committed in those instructions and then push
 the new work to the GitHub repository, so that you can continue from step 15.

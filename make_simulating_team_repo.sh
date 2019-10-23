@@ -1,6 +1,6 @@
 #!/bin/bash
 # This script replaces the manual task of adding new branches and commits
-directly on GitHub.
+# directly on GitHub.
 
 # usage:  make_simulating_team_repo local_name github_repo_url
 #         where local_name is a directory for the new repository and
@@ -22,7 +22,7 @@ UPSTREAM=$2
 mkdir ../$LOCAL
 cd $LOCAL
 
-git init 
+git init
 
 git remote add origin $UPSTREAM
 git pull origin
@@ -53,6 +53,8 @@ done
 
 git checkout master
 
+# Uncomment these lines when you are ready to push the repository to your upstream
+# of it.
 #git push -u origin master
 #git push -u origin feature2
 #git push -u origin exploratory
