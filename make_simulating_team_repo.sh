@@ -20,12 +20,11 @@ LOCAL=$1
 UPSTREAM=$2
 
 mkdir ../$LOCAL
-cd $LOCAL
+cd ../$LOCAL
 
 git init
 
 git remote add origin $UPSTREAM
-git pull origin
 git pull origin master
 
 
@@ -55,6 +54,6 @@ git checkout master
 
 # Uncomment these lines when you are ready to push the repository to your upstream
 # of it.
-#git push -u origin master
-#git push -u origin feature2
-#git push -u origin exploratory
+git push -u origin master
+git push -u origin feature2
+git push -u origin exploratory

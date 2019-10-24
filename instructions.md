@@ -1,8 +1,12 @@
 ## Instructions for This Exercise
 
-__Note__: Prior to starting, you should have installed a visual Git application on
+__Note 1__: Prior to starting, you should have installed a visual Git application on
 your machine so that you can see a visual graph of the commits in the repository
 as you work. The README in this repository explains how to do this.
+
+__Note 2__: These instructions also assume that you followed the instructions in
+the README file and cloned the repository to your local machine, and made the scripts
+in it executable.
 
 1. Create a repository on the local machine using the `create_demo_repo.sh`
 script. On the command line, enter:
@@ -59,16 +63,23 @@ it.
 
 
 
-5. __[ALTERNATIVE INSTRUCTION]__ Instead of doing steps 7 through 14 below, you can
+5. __[ALTERNATIVE INSTRUCTION]__ Instead of doing steps 7 through 15 below, you can
 run the script in this repository named `make_simulating_team_repo.sh`, which
-will create all new files created and committed in those instructions and then push
-the new work to the GitHub repository, so that you can continue from step 15.
+will create all of the files created, staged, and committed in those instructions
+and then push the new work to the GitHub repository, so that you can continue
+from step 15. It requires two arguments: a name for a second repository that it
+will create, and the URL of the GitHub repository that you created in Step 2 above.
 
-   If you choose to do this, you must make this script executable, and make sure
-that you switched back to the `demo` directory before you run it.
+   If you choose to do this, this script must be executable, __and you must make sure
+that you switched back into the `demo` directory before you run it.__
 
-    Currently the lines that push the work up are commented out; uncomment them
-before running the script.
+   In short,  you enter the following command when your current directory is
+`demo`:
+
+    ```bash
+     $ make_simulating_team_repo.sh  <temp-repo-name> <remote-repo-name>
+    ```
+
 
 5. Return to the repository on GitHub and refresh the page if you do not see the
 repository files automatically.
@@ -121,7 +132,11 @@ will show "`Branch: master`".
 above labeled  [__Creating a file on GitHub__ ] twice. Name your two files
 `option1` and `option2`.
 
-    > _The remote repository (on GitHub) now looks roughly like the image below:_
+    > _The remote repository (on GitHub) now looks roughly like the image below
+      In the figure, the master branch on GitHub is the one labeled `origin/master`.
+      The branch labeled `master` is the master on our local copy and is not in GitHub.
+      We actually created a total of seven commits to GitHub's master branch, though the
+      figure shows just five._
 
     <center>
 
@@ -188,18 +203,48 @@ tutorial. You will use `git fetch`._
 
 17. We fetch just the upstream `master` branch for now, the one that is _tracked_
 by your local `master` branch, and the one that is known locally as
-`origin/master`. Enter the following two commands. You will see messages from
-Git that we will ignore for now.
+`origin/master`. Enter the following command.
 
     ```bash
       $ git checkout master
       Switched to branch 'master'
       Your branch is up to date with 'origin/master'
-      $ git fetch origin master
     ```
     Although Git reports that `master` is up to date with `origin/master`, it
 stated this only because it did not yet "know" that `origin/master` has advanced.
 
+18. Now enter the commands
+
+    ```bash
+      $ git fetch origin master
+        remote: Enumerating objects: 7, done.
+        remote: Counting objects: 100% (7/7), done.
+        remote: Compressing objects: 100% (2/2), done.
+        remote: Total 6 (delta 2), reused 6 (delta 2), pack-reused 0
+        Unpacking objects: 100% (6/6), done.
+        From https://github.com/stewartweiss/git-exercise-04
+         * branch            master     -> FETCH_HEAD
+           adf8879..da30c3e  master     -> origin/master
+      $ git status
+        On branch master
+        Your branch is behind 'origin/master' by 2 commits, and can be fast-forwarded.
+          (use "git pull" to update your local branch)
+
+        nothing to commit, working tree clean
+     ```
+    This fetches Git's data from GitHub about the master branch. In this output,
+the remote is a repository in my account. Notice that Git now knows that our
+local master branch is behind the master in GitHub by the two commits that were
+made to master there.
+
+19. Type `ls` and notice that the files in the master branch on GitHub that were
+added after we pushed our repository up are not in our working directory. Git fetch
+does not create them:
+
+   ```bash
+     $ ls
+      file1  file2  file3  README.md
+  ```
 18. Open the `gitg` window again and notice that it has added the commits
 from the `master` branch on GitHub. But if you look at your working directory
 it will not have the files `gh_file1` and `gh_file2` that you created.
@@ -220,14 +265,19 @@ with `origin/master`. Enter:
        create mode 100644 gh_file2
     ```
 20. Now look at your working directory with `ls` and see that the files are
-there! The `merge` updates the working directory.
+there! The `merge` updates the working directory
 
+    ```bash
+     $ ls
+      file1  file2  file3 gh_file1  gh_file2  README.md
+    ```
     > _Now it is time to integrate your work on the `feature1` branch with
 the upstream changes in the `master` branch. But we will not use `merge`.
 This is a perfect chance to practice rebasing._
 
     > _Conceptually, your feature branch and the master branch look like
-the figure below._
+the figure below, although the number of commits on the master is greater
+than what this figure shows._
 
     <center>
 
@@ -316,8 +366,19 @@ We will use the `fetch/merge` approach to do this. We fetch the `feature2` branc
 
     ```bash
       $ git fetch origin feature2
+      remote: Enumerating objects: 7, done.
+      remote: Counting objects: 100% (7/7), done.
+      remote: Compressing objects: 100% (2/2), done.
+      remote: Total 6 (delta 2), reused 6 (delta 2), pack-reused 0
+      Unpacking objects: 100% (6/6), done.
+      From https://github.com/stewartweiss/git-exercise-04
+       * branch            feature2   -> FETCH_HEAD
+       * [new branch]      feature2   -> origin/feature2
     ```
-24. You do not have a local `feature2` branch to track this remote branch, so the
+
+24. You do not have a local `feature2` branch to track this remote branch.
+If you look at the visual display you will not see a `feature2` branch. Fetching
+does not create it,  so the
 next step is to create it. The following instruction creates a branch named
 `feature2` that tracks `origin/feature2` and then makes it the currrent branch:
 
@@ -326,9 +387,11 @@ next step is to create it. The following instruction creates a branch named
     ```
 
     Take a look at the `gitg` window and notice that the history is now forked
-again, and that the `feature2` branch tip is two commits ahead of `master`.
-Also, look at your working directory using `ls` and notice that the files
-added in `feature2` are not there. All we did was fetch, not pull.
+again, and that the `feature2` branch tip is two commits ahead of `master`. If
+you enter the `ls` command you will also see that the new files are in your
+directory. This is because the `feature2` branch is created based on the remote
+branch `origin/feature2`.
+
 
     > _Because `master` is an ancestor of `feature2` and not on a different part
 of the tree, we can do a __fast-forward merge__ to integrate the feature into the
@@ -350,7 +413,7 @@ commit as the `feature2` and it will also update the working directory._
        create mode 100644 feature2_file2
     ```
 
-    > _Notice that Git added the two missing files. If youo look at `gitg` again (you
+    > _Notice that Git added the two missing files. If you look at `gitg` again (you
 might have to refresh it or close and reopen it) you will see that `feature2`,
 `origin/feature2`, and `master` all point to the same commit. However, `feature1`
 is no longer ahead of `master`; they are not on the same linear path. In other
@@ -369,9 +432,7 @@ on `master`._
       First, rewinding head to replay your work on top of it...
       Applying: added feature1_1
       Applying: added feature1_2
-      Applying: feature1_3
-      Applying: feature1_4
-      Applying: feature1_5
+      Applying: Added three new files to feature1 branch
     ```
     Look at the working directory and look at the `gitg` window. The history is
 once again linear and all files are present.
@@ -384,6 +445,14 @@ to inspect it. That is the last step of this activity._
 
     ```bash
       $ git fetch origin exploratory
+      remote: Enumerating objects: 7, done.
+      remote: Counting objects: 100% (7/7), done.
+      remote: Compressing objects: 100% (2/2), done.
+      remote: Total 6 (delta 2), reused 6 (delta 2), pack-reused 0
+      Unpacking objects: 100% (6/6), done.
+      From https://github.com/stewartweiss/git-activity-04
+       * branch            exploratory -> FETCH_HEAD
+       * [new branch]      exploratory -> origin/exploratory
     ```
     > _Since we are only inspecting and have no plans to integrate this work
 into our repository, it is enough to just check out the new remote branch._
@@ -419,7 +488,8 @@ advice and create a new tracking branch, as follows._
 You might have to refresh or reload the window.
 
     > _The history now looks approximately like this, ignoring the number of
-commits and missing a few branch names:_
+commits, and that the common ancestor of `exploratory` and `master` should be
+`origin/master`, and that some branchnames not labelled correctly:_
 
     <center>
 

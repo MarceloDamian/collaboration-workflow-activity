@@ -2,7 +2,8 @@
 # Creates a forked repository for experimenting and exploring
 # various synchronization methods using git.
 # Written by Stewart Weiss, April 20, 2019
-# Modified by Stewart Weiss, October 209, 2019
+# Modified by Stewart Weiss, October 20, 2019
+#
 #
 # USAGE:  create_demo_repo.sh  <new-repository-name>
 #     This will create a repository with the given name in the
@@ -53,12 +54,12 @@ echo "fetch, merge, rebase, and a few other git commands." >> README.md
 git add README.md ; git commit . -m "Created and initialized README.md"
 
 
-# Create some files and commits in master branch
+# Create some files and one new commit in master branch
 for i in `seq 1 ${master_branch_length}` ; do
     echo "This is line ${i} of the file named file${i}." > file${i} ;
     git add file${i} ;
-    git commit . -m "Added file${i}"
 done
+git commit -m "Added several files." .
 
 # Create a new branch named feature1 and add some commits to it
 git checkout -b feature1
