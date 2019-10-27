@@ -66,13 +66,14 @@ window, navigate to the repository directory, and use
 
 1. Clone this repository onto your local machine.
 
-2. Make the two scripts in this repository, `create_demo_repo.sh` and
-`make_repo_with_conflict.sh` executable:
+2. Change directory into the repository directory and make the two scripts
+in this repository, `create_demo_repo.sh` and `make_simulating_team_repo.sh`
+executable by typing the command:
 
     ```bash
-      $ chmod +x ~/bin/create_demo_repo.sh make_repo_with_conflict.sh
+      $ chmod +x create_demo_repo.sh make_simulating_team_repo.sh
     ```
-    __[Optional Step]__ If you want to be able to run them without having to
+    __[Optional Step]__ If you want to be able to run these scripts
 from any directory, just by typing their names, then copy them into a
 directory that is listed in your shell's `PATH` variable, such
 as `~/bin`, as they might be useful to have for future use. The script
