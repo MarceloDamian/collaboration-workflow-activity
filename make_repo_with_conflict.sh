@@ -10,6 +10,8 @@
 #                   argument and creates the repo in that directory.
 #                   If the directory exists it will  create it in that
 #                   directory.
+#                 : March 8, 2020 by SNW
+#                   Added more comments and changed what gets written into files
 
 # Description     :
 # A tiny script that creates a git repository with a merge conflict
@@ -26,7 +28,7 @@
 #    git merge branch1
 # Then handle the merge conflict as instructed.
 
-# License        : Copyright 2019 Stewart Weiss
+# License        : Copyright 2020 Stewart Weiss
 #
 #     This code is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
@@ -61,21 +63,31 @@ fi
 # Navigate into the repository
 cd $1
 
-echo "My first file" > file1 ; git add file1
+# Create two files in master branch first
+echo "This is the first file." > file1 ; git add file1
 git commit . -m "Added file1 to empty repository"
-echo "My second file" > file2 ; git add file2
+echo "This is the second file." > file2 ; git add file2
 git commit . -m "Added file2 "
+
+# Create and switch to a new branch named branch1
 git checkout -b branch1
-echo "My third file" >|  file3 ; git add file3
-git commit . -m "Updated file3"
-echo "New file in branch1" > file4 ; git add file4
-git commit . -m "Added file4 to this branch"
-git checkout master
-echo "new file in master" > file5 ; git add .
-git commit . -m "Added file5 to master"
-echo "My latest third file" >|  file3 ; git add file3
+
+# Create a third file in the new branch
+echo "This is the third file." >  file3 ; git add file3
 git commit . -m "Updated file3"
 
+# Switch to master and create a new commit by adding a fourth file
+git checkout master
+echo "This is the fourth file" > file4 ; git add .
+git commit . -m "Added file4 to master"
+
+# Now create the conflict: Create a file named file3 in master with a different
+# first line:
+echo "This is a better file3 than we had before." >  file3 ; git add file3
+git commit . -m "Updated file3"
+
+# If you try to merge branch1 into master it will cause a merge conflict.
+# Or if you try to merge master into branch1, same problem.
 
 # Navigate out to the working directory
 cd $OLDPWD

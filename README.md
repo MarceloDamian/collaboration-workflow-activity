@@ -12,13 +12,12 @@ often as you wish.
 ### Requirements
 
 1. This activity is based on the assumption that you have read the slides on
-collaboration workflows that I published on the course website:
+collaboration workflows that I publish on the course website:
 [Collaboration Workflows: Basics](http://www.compsci.hunter.cuny.edu/~sweiss/course_materials/csci395.86/slides/collaborating_workflows.html)
 .
-These slides cover the basics about remotes, branching, and methods of
+Those slides cover the basics about remotes, branching, and methods of
 synchronizing repositories. A second set of slides  specifically covers
-merging and rebasing and is also published on the website. They are not complete
-yet, but contain sufficient material:
+branching, merging and rebasing and is also published on the website.
 [Tutorial on Merging and Rebasing](http://www.compsci.hunter.cuny.edu/~sweiss/course_materials/csci395.86/slides/git_merge_rebase.html).
 They also assume that you are familiar with how to clone and fork repositories on
 GitHub.
@@ -53,7 +52,7 @@ automatically all of the time.
    If you cannot install such a viewer, the fall-back is to open another terminal
 window, navigate to the repository directory, and use
 
-    ```bash
+    ```git
        git log --oneline --graph --all
     ```
 
@@ -66,12 +65,13 @@ window, navigate to the repository directory, and use
 
 1. Clone this repository onto your local machine.
 
-2. Change directory into the repository directory and make the two scripts
-in this repository, `create_demo_repo.sh` and `make_simulating_team_repo.sh`
+1. Change directory into the repository directory and make the three scripts
+in this repository, `create_demo_repo.sh`, `make_repo_with_conflict.sh` and
+`make_simulating_team_repo.sh`,
 executable by typing the command:
 
     ```bash
-      $ chmod +x create_demo_repo.sh make_simulating_team_repo.sh
+      $ chmod +x create_demo_repo.sh make_repo_with_conflict.sh make_simulating_team_repo.sh
     ```
     __[Optional Step]__ If you want to be able to run these scripts
 from any directory, just by typing their names, then copy them into a
@@ -81,7 +81,7 @@ as `~/bin`, as they might be useful to have for future use. The script
 you can practice resolving it. If you mess it up, you can just delete it and
 run the script again.
 
-2. Follow the instructions in the file `Instructions.md` in this repository.
+1. Follow the instructions in the file `instructions.md` in this repository.
 
-3. Have fun. I think it is cool to see how Git works visually and to see how
+1. Have fun. I think it is cool to see how Git works visually and to see how
 powerful it is.
